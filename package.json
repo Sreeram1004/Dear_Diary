@@ -1,0 +1,36 @@
+{
+  "name": "diary",
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {},
+  "engines": {
+    "node": "^18.15.0",
+    "npm": "^9.5.0"
+  },
+  "dependencies": {
+    "node": "^20.15.0"
+  },
+  "version": "1.0.0",
+  "description": "Dear Diary is a project developed using MERN Stack.Where user can write and upload photo and can look back in time what he had experienced.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sreeram1004/Dear_Diary.git"
+  },
+  "keywords": [
+    "ReactJS",
+    "MongoDB",
+    "Cloudinary",
+    "Express",
+    "NodeJS"
+  ],
+  "author": "Sreeram Angina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sreeram1004/Dear_Diary/issues"
+  },
+  "homepage": "https://github.com/Sreeram1004/Dear_Diary#readme"
+}
