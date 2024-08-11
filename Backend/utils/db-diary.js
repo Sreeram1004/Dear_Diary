@@ -3,7 +3,7 @@ const { MongoClient, ClientEncryption } = require('mongodb');
 const crypto = require('crypto');
 
 // MongoDB URIs
-const uri_diary = "mongodb+srv://sreeramangina:QfK26F3wq78hsY32@diary.dtxwfls.mongodb.net/diary?retryWrites=true&w=majority&appName=Diary";
+const uri_diary = "mongodb+srv://sreeramangina:Df05rk9DBS6BrJOY@cluster0.ms09c2k.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // Encryption setup
 const kmsProviderName = "local";
@@ -24,7 +24,6 @@ const encryption = new ClientEncryption(client, {
     }
   }
 });
-const datakeyId =  encryption.createDataKey('local', { localMasterKey });
 const createKey = async () => {
   try {
     const key = await encryption.createDataKey('local', { localMasterKey });
@@ -34,8 +33,6 @@ const createKey = async () => {
     console.error("Error creating encryption key:", err);
   }
 };
-// const datakeyId=createKey();
-// Connect to databases
 const connectDB_diary = async () => {
   try {
     await client.connect();
@@ -45,4 +42,4 @@ const connectDB_diary = async () => {
   }
 };
 
-module.exports = { connectDB_diary,client,createKey,datakeyId, encryption,localMasterKey, encryptedDatabaseName, encryptedCollectionName };
+module.exports = { connectDB_diary,client,createKey, encryption,localMasterKey, encryptedDatabaseName, encryptedCollectionName };

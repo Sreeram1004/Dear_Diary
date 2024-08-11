@@ -1,9 +1,13 @@
 const mongoose =require("mongoose");
-const uri_user="mongodb+srv://sreeramangina:QfK26F3wq78hsY32@diary.dtxwfls.mongodb.net/list?retryWrites=true&w=majority&appName=Diary";
+const { MongoClient } = require('mongodb');
+const uri_user="mongodb+srv://sreeramangina:Df05rk9DBS6BrJOY@cluster0.ms09c2k.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const client = new MongoClient(uri_user, {
+});
 const connectDB_user =async()=>{
 try{
-    await mongoose.createConnection(uri_user,{socketTimeoutMS: 45000, // Increase as needed
-        connectTimeoutMS: 30000});
+    await client.connect()
+    // await mongoose.createConnection(uri_user,{socketTimeoutMS: 45000, // Increase as needed
+    //     connectTimeoutMS: 30000});
     console.log("connected");
 }
 catch(err){
@@ -11,4 +15,4 @@ catch(err){
 }
 }
 
-module.exports = connectDB_user;
+module.exports = {connectDB_user,client};
