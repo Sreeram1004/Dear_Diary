@@ -8,6 +8,7 @@
     "npm": "^9.5.0"
   },
   "dependencies": {
+    "diary": "file:",
     "node": "^20.15.0"
   },
   "version": "1.0.0",

@@ -1,0 +1,83 @@
+import React, { useState } from 'react';
+
+const Memories = () => {
+  const [title, setTitle] = useState('');
+  const [memories, setMemories] = useState([]); // Array of objects with image and content
+  const [content,setContent]=useState(null);
+  const handleTitleChange = (e) => setTitle(e.target.value);
+  const handleImageUpload = (e) => {
+    if(e.target.files[0]===undefined)return;
+    const newImage = URL.createObjectURL(e.target.files[0]);
+    setMemories([...memories, { image: newImage, content: '' ,bcontent:''}]);
+    console.log(memories.length)
+  };
+
+  const handleContentChange = (index, e) => {
+    const updatedMemories = [...memories];
+    updatedMemories[index].content = e.target.value;
+    setMemories(updatedMemories);
+  };
+  const handlebContentChange = (index, e) => {
+    const updatedMemories = [...memories];
+    updatedMemories[index].bcontent = e.target.value;
+    setMemories(updatedMemories);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Logic to process or store memories (replace with your implementation)
+    console.log('Memories:', memories);
+
+    // Clear form after submission (optional)
+    setTitle('');
+    setMemories([]);
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="container mx-auto px-4 py-8  bg-gray-100 rounded-lg shadow-md">
+      <h2>Create Memories (h2 with styles)</h2>
+      <input
+        type="text"
+        placeholder="Title"
+        value={title}
+        onChange={handleTitleChange}
+        className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
+      />
+       <textarea
+        placeholder="Content"
+        value={content}
+        onChange={(e) => {setContent(e.target.value)}}
+        className="w-full h-48 px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 resize-none"
+      />
+      {memories.map((memory, index) => (
+        <div>
+        <div key={index} className="memory-container flex mb-4">
+          <img
+            src={memory.image}
+            alt={`Uploaded Image ${index + 1}`}
+            className=" w-[1/4] h-48 object-cover mr-4"
+          />
+          <textarea
+            placeholder="Content"
+            value={memory.content}
+            onChange={(e) => handleContentChange(index, e)}
+            className="w-full h-48 px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 resize-none"
+          />
+        </div>
+        <textarea
+        placeholder="Content"
+        value={memory.bcontent}
+        onChange={(e) => handlebContentChange(index, e)}
+        className="w-full h-48 px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 resize-none"
+      />
+      </div>
+      ))}
+      <input type="file" accept="image/*" onChange={handleImageUpload} className="block w-full p-3 text-sm text-gray-700 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none focus:ring-1 focus:ring-blue-500" />
+      <button className="bg-blue-500 text-white hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Save
+      </button>
+    </form>
+  );
+};
+
+export default Memories;
